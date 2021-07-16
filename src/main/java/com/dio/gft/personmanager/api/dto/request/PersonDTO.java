@@ -20,6 +20,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PersonDTO {
 
+    private Long id;
+    
     @NotEmpty
     @Size(min=2, max=50)
     private String firstName;
