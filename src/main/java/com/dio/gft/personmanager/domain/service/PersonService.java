@@ -57,5 +57,21 @@ public class PersonService {
                     .orElseThrow(() -> new PersonNotFoundException(id));
     }
     
+    public Person update(Long id, PersonDTO personDTO) throws PersonNotFoundException {
+        findPersonOrFail(id);
+
+        System.out.println("\n\n------");
+        System.out.println(personDTO.toString());
+        System.out.println("\n\n------");
+
+        Person updatedPerson = personMapper.toModel(personDTO);
+        System.out.println("\n\n------");
+        System.out.println(updatedPerson.toString());
+        System.out.println("\n\n------");
+
+        Person savedPerson = personRepository.save(updatedPerson);
+
+        return savedPerson;
+    }
 
 }
