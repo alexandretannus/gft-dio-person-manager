@@ -13,13 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
     
-    @Autowired
     private PersonRepository personRepository;
-
-
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
 
