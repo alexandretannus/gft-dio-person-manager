@@ -36,6 +36,4 @@ public class Phone {
     @Column(name = "phone_number")
     private String number;
 
-    @ManyToOne
-    private Person person;
 }

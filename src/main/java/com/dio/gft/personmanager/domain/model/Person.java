@@ -1,20 +1,19 @@
 package com.dio.gft.personmanager.domain.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import org.hibernate.validator.constraints.br.CPF;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,20 +32,14 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotBlank
     private String firstName;
 
-    @NotBlank
     private String lastName;
 
-    @CPF
-    @NotBlank
     private String cpf;
 
     private LocalDate birthDate;
 
-    @JsonIgnoreProperties({"person"})
-    @OneToMany(mappedBy="person", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    List<Phone> phones;
-
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Phone> phones = new ArrayList<>();
 }

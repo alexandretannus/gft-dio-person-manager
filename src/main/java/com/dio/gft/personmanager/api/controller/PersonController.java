@@ -1,5 +1,6 @@
 package com.dio.gft.personmanager.api.controller;
 
+import com.dio.gft.personmanager.api.dto.request.PersonInputDTO;
 import com.dio.gft.personmanager.domain.model.Person;
 import com.dio.gft.personmanager.domain.service.PersonService;
 
@@ -22,7 +23,7 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Person save(@RequestBody Person person) {
-        return personService.createPerson(person);
+    public Person save(@RequestBody Person personInputDTO) {
+        return personService.createPerson(personInputDTO);
     }
 }
