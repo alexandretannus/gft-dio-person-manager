@@ -10,6 +10,7 @@ import com.dio.gft.personmanager.domain.model.Person;
 import com.dio.gft.personmanager.domain.repository.PersonRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,10 +37,25 @@ public class PersonService {
 
 
     public PersonDTO findById(Long id) throws PersonNotFoundException {
-        Person person = personRepository.findById(id)
-                .orElseThrow(() -> new PersonNotFoundException(id));
+        Person person = findPersonOrFail(id);
 
         return personMapper.toDTO(person);
     }
+
+ 
+    public void delete(Long id) throws PersonNotFoundException {
+        try {
+            personRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException exception) {
+            throw new PersonNotFoundException(id);
+        }
+    }
+
+
+    private Person findPersonOrFail(Long id) throws PersonNotFoundException {
+        return personRepository.findById(id)
+                    .orElseThrow(() -> new PersonNotFoundException(id));
+    }
+    
 
 }
