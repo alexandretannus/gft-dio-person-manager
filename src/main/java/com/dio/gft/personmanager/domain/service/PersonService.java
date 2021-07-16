@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.dio.gft.personmanager.api.dto.request.PersonDTO;
+import com.dio.gft.personmanager.api.exception.PersonNotFoundException;
 import com.dio.gft.personmanager.core.config.mapper.PersonMapper;
 import com.dio.gft.personmanager.domain.model.Person;
 import com.dio.gft.personmanager.domain.repository.PersonRepository;
@@ -31,6 +32,14 @@ public class PersonService {
         return people.stream()
                 .map(personMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+
+    public PersonDTO findById(Long id) throws PersonNotFoundException {
+        Person person = personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException(id));
+
+        return personMapper.toDTO(person);
     }
 
 }
