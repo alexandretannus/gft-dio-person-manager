@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class PersonDTO {
 
     private Long id;
-    
+
     @NotEmpty
     @Size(min=2, max=50)
     private String firstName;
@@ -34,7 +34,7 @@ public class PersonDTO {
     @NotEmpty
     private String cpf;
 
-    private LocalDate birthDate;
+    private String birthDate;
 
     @NotEmpty
     @Valid
