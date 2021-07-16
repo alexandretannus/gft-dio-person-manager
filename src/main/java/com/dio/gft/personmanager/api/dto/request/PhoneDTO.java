@@ -7,15 +7,18 @@ import javax.validation.constraints.Size;
 
 import com.dio.gft.personmanager.domain.enums.PhoneType;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-public class PhoneInputDTO {
+@AllArgsConstructor
+@NoArgsConstructor
+public class PhoneDTO {
 
     @Enumerated(EnumType.STRING)
-    @NotEmpty
     private PhoneType phoneType;
 
     @NotEmpty

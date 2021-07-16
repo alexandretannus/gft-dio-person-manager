@@ -7,16 +7,18 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.dio.gft.personmanager.domain.model.Phone;
-
 import org.hibernate.validator.constraints.br.CPF;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-public class PersonInputDTO {
+@AllArgsConstructor
+@NoArgsConstructor
+public class PersonDTO {
 
     @NotEmpty
     @Size(min=2, max=50)
@@ -34,5 +36,5 @@ public class PersonInputDTO {
 
     @NotEmpty
     @Valid
-    private List<PhoneInputDTO> phones;
+    private List<PhoneDTO> phones;
 }

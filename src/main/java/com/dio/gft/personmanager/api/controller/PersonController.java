@@ -1,6 +1,8 @@
 package com.dio.gft.personmanager.api.controller;
 
-import com.dio.gft.personmanager.api.dto.request.PersonInputDTO;
+import javax.validation.Valid;
+
+import com.dio.gft.personmanager.api.dto.request.PersonDTO;
 import com.dio.gft.personmanager.domain.model.Person;
 import com.dio.gft.personmanager.domain.service.PersonService;
 
@@ -16,14 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/people")
 public class PersonController {
     
-
     @Autowired
     private PersonService personService;
 
-
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Person save(@RequestBody Person personInputDTO) {
-        return personService.createPerson(personInputDTO);
+    public Person save(@Valid @RequestBody PersonDTO personDTO) {
+        return personService.createPerson(personDTO);
     }
 }
